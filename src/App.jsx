@@ -1,34 +1,27 @@
 import { useState } from 'react';
-import './App.css';
 
-function App() {
-  // Estado numérico
-  const [numero, setNumero] = useState(100);
+export function App() {
+  const [numero, setNumero] = useState(0);
 
-  // Estado booleano
-  const [visivel, setVisivel] = useState(true);
+  const [esconder, setEsconder] = useState(false);
 
-  // Função para alternar visibilidade
-  const alternarVisibilidade = () => {
-    setVisivel(prev => !prev);
-  };
-
+  function handleMostrarEsconder() {
+    esconder === true ? setEsconder(false) : setEsconder(true);
+  }
+  
   return (
-    <div style={{ padding: '2rem' }}>
+    <div>
       <h1>Valor: {numero}</h1>
-      <button onClick={() => setNumero(numero + 100)}>Adicionar 100</button>
+      <button onClick={() => setNumero(numero + 100)}>Adicionar +100</button>
 
-      <div style={{ marginTop: '2rem' }}>
-        <button onClick={alternarVisibilidade}>
-          {visivel ? 'Esconder' : 'Mostrar'}
-        </button>
+      <br /><br />
 
-        {visivel ? (
-          <p>paragrafo para mostrar e Esconder</p>
-        ) : null}
-      </div>
+      
+      <button onClick={handleMostrarEsconder}>{esconder === true? "Esconder Texto" : "Mostrar Texto"}</button>
+      {esconder === true ? <p>Mostrar Texto</p> : ""}
+
     </div>
   );
 }
 
-export default App
+
